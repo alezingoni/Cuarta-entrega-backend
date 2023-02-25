@@ -1,0 +1,72 @@
+<div>
+<h1>WebSocket</h1>
+<form >
+
+Title <input id="title"  type="text" name="title" required></input>
+Description <input id="description"  type="text" name="description" required></input>
+Price <input id="price"  type="text" name="price" required ></input>
+Thumbnail <input id="thumbnail"  type="text" name="thumbnail" required></input>
+Code <input id="code"  type="text" name="code" required></input>
+Stock <input id="stock"  type="text" name="stock" required ></input>
+</form>
+
+<button id="send">Add</button>
+
+<h2>Productos actuales</h2>
+<table>
+<thead>
+<tr>
+
+<td>Nombre</td>
+<td>Descripcion</td>
+<td>Precio</td>
+<td>Stock</td>
+
+</tr>
+
+</thead>
+<tbody id="history">
+</tbody>
+</table>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/main.js"></script>
+
+<script>
+const socket = io("http://localhost:8080")
+let productsArray = []
+document.getElementById("send").addEventListener("click", postProduct)
+function postProduct(event)  {
+event.preventDefault()
+let product = {
+"title" : document.getElementById("title").value,
+"description" : document.getElementById("description").value,
+"price" : document.getElementById("price").value,
+"thumbnail" : document.getElementById("thumbnail").value,
+"code" : document.getElementById("code").value,
+"stock" : document.getElementById("stock").value,
+}
+socket.emit("newProduct", product)
+console.log(product)
+}
+function deleteProduct(id) {
+socket.emit("deleteProduct", id)
+}
+socket.on("productsArray", data => {
+let history = document.getElementById("history")
+history.innerHTML = ""
+data.map(element => {
+    history.innerHTML += `
+                    <tr>
+                    <td> ${element.title} </td>
+                    <td>${element.description}</td>                    
+                    <td>$ ${element.price}</td>
+                    <td>${element.stock} </td>
+                    </tr>
+                    <button onclick="deleteProduct(${element.id})">Delete</button>
+    `
+})
+})
+</script>

@@ -1,0 +1,47 @@
+[
+	{
+		"title": "Test1",
+		"description": "Probando1",
+		"price": 340,
+		"thumbnail": "sin imagen",
+		"code": "1271",
+		"stock": 10,
+		"id": 1
+	},
+	{
+		"title": "Test8",
+		"description": "Probando",
+		"price": 340,
+		"thumbnail": "sin imagen",
+		"code": "12237",
+		"stock": 10,
+		"id": 8
+	},
+	{
+		"title": "Test12",
+		"description": "Probando",
+		"price": 340,
+		"thumbnail": "sin imagen",
+		"code": "12231237",
+		"stock": 1,
+		"id": 12
+	},
+	{
+		"title": "conPostman",
+		"description": "test",
+		"price": "1222",
+		"thumbnail": "uploads\\img-placeholder.png",
+		"code": "988524",
+		"stock": "20",
+		"id": 13
+	},
+	{
+		"title": "11",
+		"description": "123",
+		"price": "421",
+		"thumbnail": "no",
+		"code": "10",
+		"stock": "20",
+		"id": 17
+	}
+]
